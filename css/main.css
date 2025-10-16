@@ -1405,7 +1405,11 @@ h2 {
 /* --------------------------
    Responsive (1024px altı)
 --------------------------- */
+/* --------------------------
+   Responsive (1024px altı)
+--------------------------- */
 @media screen and (max-width: 1024px) {
+    
     /* ********************************************* */
     /* 1. NAV BAR VE HERO DÜZENLEMELERİ (Küçültme)   */
     /* ********************************************* */
@@ -1419,18 +1423,18 @@ h2 {
     }
     
     .hamburger {
-        display: flex; /* Hamburger menüyü göster */
+        display: flex;
     }
     .nav-links {
         display: flex;
     }
     .nav-links a, .hizmetler-submenu a {
-        font-size: 16px !important; /* Menü yazı boyutunu küçült */
+        font-size: 16px !important;
         padding: 8px 0 !important;
     }
 
     .hero-section .hero-content h1 {
-        font-size: 32px !important; /* Slider başlığını küçült */
+        font-size: 32px !important; 
     }
     .hero-section .hero-content p {
         font-size: 18px !important; 
@@ -1440,7 +1444,7 @@ h2 {
     /* 2. FLEX YÖNLENDİRME (Metin üstte, Resim altta)*/
     /* ********************************************* */
     
-    /* Metnin HTML'de önde olduğu konteynerler (Metin üstte, Resim altta) */
+    /* Metnin HTML'de önde olduğu konteynerler */
     .about-container, 
     .service-container, 
     .quake-container {
@@ -1448,62 +1452,52 @@ h2 {
         align-items: center; 
     }
     
-    /* Resmin HTML'de önde olduğu konteynerler (Sırayı ters çevirerek metni üste al) */
+    /* Resmin HTML'de önde olduğu konteynerler (Sırayı ters çevir) */
     .service2-container {
         flex-direction: column-reverse; 
         align-items: center; 
     }
 
     /* ********************************************* */
-    /* 3. BLOK HİZALAMA VE BAŞLANGIÇ NOKTASI (Kayma Çözümü) */
+    /* 3. BAŞLIK VE BUTON HİZALAMA ÇÖZÜMÜ (ANA ODAK) */
     /* ********************************************* */
 
-    /* Tüm içerik bloklarına mobil genişlik ve padding/margin ayarı */
-    .about-text, .about-image, 
-    .service-text, .service-image, 
-    .service2-text, .service2-image, 
-    .quake-text, .quake-image {
+    /* Metin Bloklarının Genişlik ve Padding Ayarı */
+    .about-text, .service-text, .service2-text, .quake-text {
         flex-basis: 100%; 
         max-width: 100%; 
         width: 100%; 
-        margin: 15px 0; 
-        padding: 0 15px; 
-    }
-    
-    /* Ana Metin Bloklarının ortalanması (Başlıklar ve Butonlar için) */
-    .about-text, .service-text, .service2-text, .quake-text {
-        text-align: center; 
-        margin-left: 0 !important; /* Sağa kaymayı engeller */
+        padding: 0 15px; /* Sayfa kenarından boşluk bırak */
+        margin-left: 0 !important; 
         margin-right: 0 !important;
-        /* Padding: 0 15px kuralı yukarıda tüm bloklara uygulandı. */
+        
+        /* ANA ÇÖZÜM: Tüm içeriği ortala, böylece başlıklar ve butonlar sayfaya göre ortalanır. */
+        text-align: center !important; 
     }
 
-    /* ********************************************* */
-    /* 4. BAŞLIK, PARAGRAF VE LİSTE YAZI DÜZENİ */
-    /* ********************************************* */
-
-    /* Başlıkların hem yatayda hem de yazı olarak ortalı kalmasını sağla */
-    .about-text h2, .service-text h2, .quake-text h2, .service2-text h2 {
-        text-align: center;
-    }
-
-    /* Paragrafların ve listelerin sola yaslı kalmasını zorla */
+    /* Yalnızca Paragrafları ve Listeleri Sola Yasla */
     .about-text p, .service-text p, .service2-text p, .quake-text p,
     .service-list, .service2-list {
-        text-align: left !important; 
+        text-align: left !important; /* Paragrafları ve listeleri sola çeker */
     }
     
     /* Listelerin kaymasını engelle ve madde işaretleri için boşluk bırak */
     .service-list, .service2-list {
         padding-left: 20px !important; 
-        margin-left: 0 !important; /* Liste kaymasını engeller */
+        margin-left: 0 !important; 
+    }
+
+    /* Başlıklar zaten parent (metin bloğu) ile ortalandı. */
+    .about-text h2, .service-text h2, .quake-text h2, .service2-text h2 {
+        /* text-align: center !important; (Gerekli değil, parent'tan alır, ama güvenilir tutmak için kalsın) */
+        text-align: center !important; 
     }
 
     /* ********************************************* */
-    /* 5. BUTON VE RESİM DÜZENLEMELERİ (Büyütme)     */
+    /* 4. BUTON VE RESİM DÜZENLEMELERİ (Büyütme)     */
     /* ********************************************* */
 
-    /* Butonları ortala ve içindeki yazıyı ortala */
+    /* Butonları ortala (Parent'tan alsa da güvence için) */
     .about-btn, .service-btn, .quake-btn {
         display: inline-block; 
         margin-top: 10px;
@@ -1514,25 +1508,31 @@ h2 {
         justify-content: center;
     }
     
-    /* Resimlerin kapsayıcılarını ayarla */
+    /* Resim Kapsayıcı Ayarları */
     .about-image, .service-image, .service2-image, .quake-image {
+        flex-basis: 100%; 
+        max-width: 100%;
+        width: 100%;
         padding: 0 !important; 
         margin: 20px 0 !important; 
     }
 
-    /* Resimlerin boyutlarını büyüt ve taşmayı engelle */
+    /* Resimlerin boyutlarını büyüt */
     .about-image img, .service-image img, .service2-image img, .quake-image img {
         max-width: 100% !important; 
         width: 100% !important; 
         height: auto !important;
-        min-height: 280px !important; /* Resimleri belirgin şekilde büyüt */
+        min-height: 280px !important; 
         object-fit: cover; 
     }
     .image-wrapper {
         display: block; margin-left: auto; margin-right: auto; max-width: 100%;
     }
-    
-    /* Animasyon/Transformasyonları sıfırla */
+
+    /* İnce ayarlar */
+    .service2-text h2::after {
+        left: 50%; transform: translateX(-50%);
+    }
     .service2-text h2, .service2-text p, .service2-image, .quake-text p {
         transform: none !important; opacity: 1 !important; 
     }
