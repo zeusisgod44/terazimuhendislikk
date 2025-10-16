@@ -1402,12 +1402,8 @@ h2 {
 .hizmetler-submenu a:hover {
     color: #ff9800;
 }
-
-/* --------------------------
-   Responsive (1024px altı)
---------------------------- */
 @media screen and (max-width: 1024px) {
-    /* Navbar ve Mobil Menü Ayarları */
+    /* Navbar ve Mobil Menü Ayarları (Değişmedi) */
     .hamburger {
         display: flex;
     }
@@ -1428,7 +1424,7 @@ h2 {
     .service-container, 
     .service2-container, 
     .quake-container {
-        /* Tüm konteynerler alt alta yığılsın */
+        /* Alt alta yığma */
         flex-direction: column; 
         align-items: center; 
     }
@@ -1445,7 +1441,7 @@ h2 {
     }
 
     /* ********************************************* */
-    /* Metin ve Resim Bloklarının Genişlik Ayarları   */
+    /* Blok Genişlikleri ve Hizalama                   */
     /* ********************************************* */
 
     .about-text, .about-image,
@@ -1454,46 +1450,57 @@ h2 {
     .quake-text, .quake-image {
         flex-basis: 100%; 
         max-width: 100%; 
+        width: 100%; /* Emin olmak için */
         margin: 15px 0; 
         padding: 0 15px; 
     }
 
-    /* ********************************************* */
-    /* METİN HİZALAMASI İÇİN DÜZELTME (Sola Yasla)   */
-    /* ********************************************* */
+    /* TÜM METİN BLOKLARININ İÇERİĞİNİ ORTALAYAN ANA KURAL */
     .about-text, .service-text, .quake-text, .service2-text {
-        text-align: left; /* TÜM METİNLERİ SOLA YASLI TUT */
+        text-align: center; /* Başlıklar ve butonlar ORTALANSIN */
+    }
+
+    /* ANA METİN VE PARAGRAFLARI SOLA ÇEK */
+    .about-text p, .service-text p, .quake-text p, .service2-text p {
+        text-align: left; /* Paragraflar SOLA YASLI kalsın */
     }
     
-    /* BAŞLIK VE PARAGRAF İÇİN DE Sola Yaslı Düzeltme */
-    .about-text h2, .about-text p, 
-    .service-text h2, .service-text p,
-    .quake-text h2, .quake-text p,
-    .service2-text h2, .service2-text p {
-        text-align: left;
-    }
-    
-    /* Listelerin kaymasını önlemek için */
+    /* Listelerin kaymasını önlemek için SOLA YASLI TUT */
     .service-list, .service2-list {
         text-align: left; 
-        margin-left: 0; /* Gerekirse sol boşluğu sıfırla */
-        padding-left: 20px; /* Standart liste boşluğu */
+        padding-left: 20px; 
+        /* Listeyi sola yaslanmış paragrafın hizasına getirmek için ortalama bloktan ayır */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     /* ********************************************* */
-    /* Resim ve Buton Ortalamaları (Gerekli Olanlar)  */
+    /* BUTON VE RESİM DÜZELTMELERİ                    */
     /* ********************************************* */
 
-    /* Resimlerin taşmamasını sağla */
-    .about-image img, 
-    .service-image img, 
-    .service2-image img, 
-    .quake-image img {
+    /* Butonların içindeki yazıyı ortala (Buton kendisi ortalandı, içindeki metin de ortalansın) */
+    .about-btn, .service-btn, .service2-btn, .quake-btn {
+        text-align: center;
+        margin: 10px auto; /* Butonun kendisini de ortalar */
+    }
+
+    /* Service2'deki buton konteynerini ortala */
+    .service2-btn-container {
+        justify-content: center;
+    }
+
+    /* Başlık altı çizgisi (after pseudo-elementi) için ortalama */
+    .service2-text h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    /* Resimlerle ilgili düzeltmeler (Düzgün yığılma için) */
+    .about-image img, .service-image img, .service2-image img, .quake-image img {
         max-width: 100%;
         height: auto;
     }
 
-    /* Resim konteynerlerini ortalamak için */
     .image-wrapper {
         display: block; 
         margin-left: auto;
@@ -1501,19 +1508,7 @@ h2 {
         max-width: 100%;
     }
     
-    /* Başlık altı çizgisini ve butonları ortalamak için (Eğer butonlar metinle hizalıysa bu kuralları kaldırabilirsiniz) */
-    .service2-text h2::after {
-        left: 0; /* Sola yaslı başlığın altındaki çizgiyi sola al */
-        transform: none;
-    }
-
-    /* Düğme konteynerlerini sola yasla (Eğer metin sola yaslıysa) */
-    .service2-btn-container {
-        display: flex;
-        justify-content: flex-start; /* Butonları sola yasla */
-    }
-    
-    /* Service2'deki resim ve metin bloklarının karışık transformasyonlarını mobilde sıfırla */
+    /* Animasyon/Transformasyonları sıfırla */
     .service2-text h2, .service2-text p, .service2-image {
         transform: none !important;
         opacity: 1 !important; 
