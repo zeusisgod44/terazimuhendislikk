@@ -579,3 +579,14 @@ navLinks.querySelectorAll('a').forEach(link => {
     });
 });
 
+// --------------------------
+// Scroll yapıldığında menüyü kapatma
+// --------------------------
+window.addEventListener('scroll', () => {
+    if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        hizmetlerSubmenu.classList.remove('open'); // opsiyonel, açık kalmasını istiyorsan bunu kaldırabilirsin
+    }
+});
+
