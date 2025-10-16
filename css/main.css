@@ -25,20 +25,19 @@ h2 {
 
 /* Navbar genel ayarları */
 .navbar {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
+    z-index: 10000;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 50px;
+    align-items: center;
     background: transparent;
-    /* Başta tamamen transparan */
-    transition: background 0.5s ease, backdrop-filter 0.5s ease;
-    z-index: 1000;
+    padding: 10px 20px;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
+
 
 /* Kaydırılınca aktif olacak stil */
 .navbar.scrolled {
@@ -1315,22 +1314,22 @@ h2 {
 --------------------------- */
 
 .hamburger {
-    display: none;
+    display: flex;
     flex-direction: column;
-    cursor: pointer;
-    width: 30px;
-    height: 25px;
     justify-content: space-between;
+    width: 25px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 10001;
 }
 
 .hamburger span {
     height: 3px;
     width: 100%;
-    background: #fff;
+    background: white;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
-
 /* Hamburger çarpıya dönüşümü */
 .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
@@ -1350,7 +1349,7 @@ h2 {
     top: 0;
     right: 0;
     width: 50%;
-    height: 100%;
+    height: 100vh;
     background-color: #222;
     flex-direction: column;
     padding: 80px 20px 20px 20px;
@@ -1405,9 +1404,10 @@ h2 {
 }
 
 /* --------------------------
-   Responsive (1024px altı)
+   Responsive (1024px altı)
 --------------------------- */
 @media screen and (max-width: 1024px) {
+    /* Navbar ve Mobil Menü Ayarları */
     .hamburger {
         display: flex;
     }
@@ -1418,5 +1418,104 @@ h2 {
 
     .nav-links a, .hizmetler-submenu a {
         font-size: 18px;
+    }
+
+    /* ********************************************* */
+    /* Resim/Metin Konteynerleri için Ana Düzeltmeler */
+    /* ********************************************* */
+
+    .about-container, 
+    .service-container, 
+    .service2-container, 
+    .quake-container {
+        /* Tüm konteynerler alt alta yığılsın */
+        flex-direction: column; 
+        align-items: center; 
+    }
+    
+    /* HTML'de Resim-Metin sırasıyla başlayan .service2-container için Metni üste almak için */
+    .service2-container {
+        flex-direction: column-reverse; 
+    }
+
+    /* Masaüstünde row-reverse olanları mobil için normal (column) yapıyoruz */
+    #güçlendirme .service-container,
+    #yikim-hafriyat .service-container {
+        flex-direction: column; 
+    }
+
+    /* ********************************************* */
+    /* Metin ve Resim Bloklarının Genişlik Ayarları   */
+    /* ********************************************* */
+
+    .about-text, .about-image,
+    .service-text, .service-image,
+    .service2-text, .service2-image,
+    .quake-text, .quake-image {
+        flex-basis: 100%; 
+        max-width: 100%; 
+        margin: 15px 0; 
+        padding: 0 15px; 
+    }
+
+    /* ********************************************* */
+    /* METİN HİZALAMASI İÇİN DÜZELTME (Sola Yasla)   */
+    /* ********************************************* */
+    .about-text, .service-text, .quake-text, .service2-text {
+        text-align: left; /* TÜM METİNLERİ SOLA YASLI TUT */
+    }
+    
+    /* BAŞLIK VE PARAGRAF İÇİN DE Sola Yaslı Düzeltme */
+    .about-text h2, .about-text p, 
+    .service-text h2, .service-text p,
+    .quake-text h2, .quake-text p,
+    .service2-text h2, .service2-text p {
+        text-align: left;
+    }
+    
+    /* Listelerin kaymasını önlemek için */
+    .service-list, .service2-list {
+        text-align: left; 
+        margin-left: 0; /* Gerekirse sol boşluğu sıfırla */
+        padding-left: 20px; /* Standart liste boşluğu */
+    }
+
+    /* ********************************************* */
+    /* Resim ve Buton Ortalamaları (Gerekli Olanlar)  */
+    /* ********************************************* */
+
+    /* Resimlerin taşmamasını sağla */
+    .about-image img, 
+    .service-image img, 
+    .service2-image img, 
+    .quake-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Resim konteynerlerini ortalamak için */
+    .image-wrapper {
+        display: block; 
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+    
+    /* Başlık altı çizgisini ve butonları ortalamak için (Eğer butonlar metinle hizalıysa bu kuralları kaldırabilirsiniz) */
+    .service2-text h2::after {
+        left: 0; /* Sola yaslı başlığın altındaki çizgiyi sola al */
+        transform: none;
+    }
+
+    /* Düğme konteynerlerini sola yasla (Eğer metin sola yaslıysa) */
+    .service2-btn-container {
+        display: flex;
+        justify-content: flex-start; /* Butonları sola yasla */
+    }
+    
+    /* Service2'deki resim ve metin bloklarının karışık transformasyonlarını mobilde sıfırla */
+    .service2-text h2, .service2-text p, .service2-image {
+        transform: none !important;
+        opacity: 1 !important; 
     }
 }
